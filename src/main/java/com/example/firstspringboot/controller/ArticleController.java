@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 @Controller
-@Slf4j // Simple Logging ~, 로깅을 위한 어노테이션
+@Slf4j // Simple Logging Facade for Java, 로깅을 위한 어노테이션
 public class ArticleController {
 
     @Autowired // 스프링부트가 미리 생성해 놓은 객체를 가져다가 자동 연결!, 객체 주입
