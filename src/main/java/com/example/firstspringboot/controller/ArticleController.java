@@ -1,12 +1,16 @@
 package com.example.firstspringboot.controller;
+
 import com.example.firstspringboot.dto.ArticleForm;
 import com.example.firstspringboot.entity.Article;
 import com.example.firstspringboot.repository.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 @Controller
 @Slf4j // Simple Logging Facade for Java, 로깅을 위한 어노테이션
 public class ArticleController {
@@ -18,6 +22,7 @@ public class ArticleController {
     public String newArticleForm() {
         return "articles/new";
     }
+
     @PostMapping("/articles/create")
     public String createArticle(ArticleForm form) {
         log.info(form.toString());
@@ -34,5 +39,23 @@ public class ArticleController {
         log.info(saved.toString());
 
         return "";
+    }
+
+    @GetMapping("/articles/{id}")
+    // URL 요청을 Parameter로 받으려면 @PathVariable을 사용
+    public String show(@PathVariable Long id, Model model) {
+        log.info("id = " + id);
+
+        // 1: id로 데이터를 가져옴!
+        // Optional<Article> articleEntity = articleRepository.findById(id);
+        // orElse는 데이터가 없는경우 처리
+        Article articleEntity = articleRepository.findById(id).orElse(null);
+
+        // 2: 가져온 데이터를 모델에 등록! -> 뷰에서 쓸 수 있도록(모델은 뷰에서 쓰기위한 형태)
+        model.addAttribute("article", articleEntity);
+
+        // 3: 보여줄 페이지를 설정!
+
+        return "articles/show";
     }
 }
