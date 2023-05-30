@@ -40,7 +40,8 @@ public class ArticleController {
 //        System.out.println(saved.toString());
         log.info(saved.toString());
 
-        return "";
+        // redirect
+        return "redirect:/articles/" + saved.getId();
     }
 
     @GetMapping("/articles/{id}")

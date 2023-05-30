@@ -1,6 +1,7 @@
 package com.example.firstspringboot.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @ToString
 @NoArgsConstructor // JPA의 Entity 객체는 기본 생성자(파라미터가 없는)를 생성해줘야함
+@Getter
 public class Article {
 
     @Id
