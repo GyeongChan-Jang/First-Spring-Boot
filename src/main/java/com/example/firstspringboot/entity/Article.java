@@ -5,12 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity // DB가 해당 객체를 인식 가능!
+@Entity // DB가 해당 객체를 인식 가능! -> 클래스를 바탕으로 테이블을 만든다.
 @AllArgsConstructor
 @ToString
 @NoArgsConstructor // JPA의 Entity 객체는 기본 생성자(파라미터가 없는)를 생성해줘야함
@@ -18,8 +15,10 @@ import javax.persistence.Id;
 public class Article {
 
     @Id
-    @GeneratedValue
+    // @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // DB가 id를 자동으로 생성
     private Long id;
+
     @Column
     private String title;
     @Column
